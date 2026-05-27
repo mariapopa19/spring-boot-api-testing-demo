@@ -5,7 +5,6 @@ import com.demo.bankaccount.dto.TransactionRequest;
 import com.demo.bankaccount.entity.Account;
 import com.demo.bankaccount.repository.AccountRepository;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient;
@@ -17,7 +16,6 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @AutoConfigureRestTestClient
