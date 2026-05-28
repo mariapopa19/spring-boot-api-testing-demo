@@ -9,6 +9,9 @@ jobs:
   test:
     name: Run Tests
     runs-on: ubuntu-latest
+    permissions:
+      checks: write        # permite action-ului sa creeze check annotations
+      pull-requests: write # permite sa posteze comentarii pe PR
 
     steps:
       # Pasul 1: descarca codul din PR
