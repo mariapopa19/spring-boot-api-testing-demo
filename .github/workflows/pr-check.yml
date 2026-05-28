@@ -1,0 +1,39 @@
+name: PR Check — Tests
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      # Pasul 1: descarca codul din PR
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Pasul 2: instaleaza Java 25 cu distributia Temurin (Eclipse)
+      # actions/setup-java@v5 suporta Java 25 conform documentatiei oficiale
+      - name: Set up JDK 25
+        uses: actions/setup-java@v5
+        with:
+          java-version: '25'
+          distribution: 'temurin'
+          cache: maven   # cacheaza ~/.m2 automat, build-urile urmatoare sunt mai rapide
+
+      # Pasul 3: ruleaza testele
+      # -B = batch mode (fara output interactiv, mai curat in CI)
+      # clean test = sterge outputul anterior si ruleaza toate testele
+      - name: Run tests with Maven
+        run: mvn -B clean test
+
+      # Pasul 4 (optional): publica raportul de teste in GitHub UI
+      # Apare la sectiunea "Summary" a workflow run-ului
+      - name: Publish test report
+        uses: mikepenz/action-junit-report@v4
+        if: always()   # ruleaza si daca testele pica — vrei sa vezi raportul oricum
+        with:
+          report_paths: '**/target/surefire-reports/TEST-*.xml'
