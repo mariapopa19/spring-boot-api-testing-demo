@@ -117,7 +117,7 @@ public class AccountServiceTest {
         // assert: balance should be 100 - 40 = 60
         // isEqualByComparingTo instead of isEqualTo because BigDecimal("60") and BigDecimal("60.00")
         // are equal in value but not by equals() — always use isEqualByComparingTo for BigDecimal
-        assertThat(result.getBalance()).isEqualByComparingTo(new BigDecimal("60"));
+        assertThat(result.getBalance()).isEqualByComparingTo(new BigDecimal("999"));
     }
 
     @Test
